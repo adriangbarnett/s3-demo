@@ -1,0 +1,36 @@
+### Upload file to s3
+POST http://localhost:3000/api/upload
+Content-Type: application/json
+
+{
+    "name":  "red.png",
+    "path":  "./public/img/"
+}
+
+### Check if file exist on S3
+GET http://localhost:3000/api/exist
+Content-Type: application/json
+
+{
+    "name":  "red.png"
+}
+### Download
+GET http://localhost:3000/api/download
+Content-Type: application/json
+
+{
+    "name": "red.png",
+    "path": "./downloads"
+}
+
+
+
+### Delete file from S3
+DELETE http://localhost:3000/api/delete
+Content-Type: application/json
+
+{
+    "name":  "red.png"
+}
+
+
