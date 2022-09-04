@@ -24,7 +24,7 @@ secreteAccessKey=XXXXXXXXXXXXXXX
 npm run dev
 
 # Demo usage
-- Use the requests in .s3.rest to test the inregration.
+- Use the requests in .s3.rest to test the integration.
 - or use the index.ejs web form
 
 # My git notes
