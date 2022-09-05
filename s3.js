@@ -17,6 +17,12 @@ const secreteAccessKey = process.env.secreteAccessKey;
     API CONTROLLER 
 
 /* -----------------------------------------------------------*/
+// api: list files
+async function s3_list_api_get(req, res) {
+    const ret = await s3_list_service();
+    return res.send(ret);
+}
+
 
 // api: download file
 async function s3_download_api_get(req, res) {
@@ -361,10 +367,46 @@ async function s3_delete(key) {
 
 }
 
+// List objects in S3 bucket
+// requires "s3:ListBucket" in the AWS policy
+async function s3_list_service() {
+
+    try {
+
+        const params = {
+            Bucket: bucketName 
+        }
+
+        const s3 = new S3({
+            accessKeyId: accessKeyId,
+            secretAccessKey: secreteAccessKey,
+        })
+
+        const result = await s3.listObjects(params).promise();
+
+        // todo: add some response error handling here ?
+
+        return result;
+
+    } catch (e) {
+
+        const resp = { 
+            code: 500,
+            message: "s3_list_api_get exception", 
+            error: e.stack
+        }
+
+        console.log(resp);
+
+        return resp;
+    }
+}
+
 module.exports = {
     s3_upload_form_post,
     s3_upload_api_post,
     s3_exist_api_get,
     s3_download_api_get,
-    s3_delete_api_get
+    s3_delete_api_get,
+    s3_list_api_get
 }

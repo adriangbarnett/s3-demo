@@ -32,6 +32,9 @@ app.get("/", (req, res) => {
 // Uplaod file to S3 using web form
 app.post("/form/upload", s3.s3_upload_form_post);
 
+// List file objects in S3 nuclet
+app.get("/api/list", s3.s3_list_api_get);
+
 // Uplaod file to S3
 app.post("/api/upload", s3.s3_upload_api_post);
 
